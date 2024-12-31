@@ -12,7 +12,7 @@ export const createCheckoutSession = async (req, res) => {
     //calculate total amaount
     let calculateTotalAmount = 0;
     const lineItems = products.map((product) => {
-      const amount = Math.round(product.price * 1000); //stripe make credit in cents =>$10 = 1000cents
+      const amount = Math.round(product.price * 100); //stripe make credit in cents =>$10 = 100cents
       calculateTotalAmount += amount * product.quantity;
       return {
         price_data: {

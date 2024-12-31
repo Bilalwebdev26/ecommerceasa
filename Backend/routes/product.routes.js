@@ -11,7 +11,7 @@ import {
 import { adminRoute, protectedRoute } from "../middleware/auth.middleware.js";
 const router = express.Router();
 
-router.post("/", protectedRoute, adminRoute, createProduct);
+router.post("/create-product", protectedRoute, adminRoute, createProduct);
 router.get("/products", protectedRoute, adminRoute, getAllProducts);
 router.get("/feature-products", getAllFeatureProducts);
 router.get("/recomended-product", protectedRoute, getRecommendedProduct);
