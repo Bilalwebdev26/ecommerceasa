@@ -43,8 +43,15 @@ const setCookie = (res,accessToken,refreshToken)=>{
 }
 
 export const signup = async(req,res)=>{
-  const{email,password,fullName}=req.body;
+  const{fullName,email,password}=req.body;
+  console.log(fullName)
+  console.log(email)
+  console.log(password)
+
   try {
+    console.log(fullName)
+    console.log(email)
+    console.log(password)
     if(!fullName || !email || !password){
         throw new apiError(401,"All Fields are Requireds")
     }

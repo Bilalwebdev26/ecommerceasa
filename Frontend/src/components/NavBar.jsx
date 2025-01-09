@@ -1,9 +1,10 @@
 import React from "react";
 import { ShoppingCart, UserPlus, LogIn, Lock, LogOut } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useUserStore } from "../stores/useUserStore";
 const NavBar = () => {
-  const user = true;
-  const isAdmin = true;
+  const {user,Logout} = useUserStore();
+  const isAdmin = user?.role === "admin";
   return (
     <header className="fixed top-0 left-0 w-full bg-gray-900 bg-opacity-90 backdrop-blur-md shadow-lg z-40 transition-all duration-300 border-b border-emerald-900 p-3">
       <div className="container mx-auto px-4 py-3">
@@ -44,7 +45,7 @@ const NavBar = () => {
               </Link>
             )}
             {user ? (
-              <button className="bg-gray-700 hover:bg-gray-500 text-white py-1 px-3 rounded-md flex items-center transition font-medium duration-300 ease-in-out">
+              <button onClick={Logout} className="bg-gray-700 hover:bg-gray-500 text-white py-1 px-3 rounded-md flex items-center transition font-medium duration-300 ease-in-out">
                 <LogOut size={20} />
                 <span className="hidden sm:inline ml-2">LogOut</span>
               </button>
@@ -59,7 +60,7 @@ const NavBar = () => {
                 </Link>
                 <Link
                   to={"/login"}
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white py-1 px-3 rounded-md items-center font-medium transition duration-300 ease-out flex"
+                  className="bg-gray-600 hover:bg-gray-700 text-white py-1 px-3 rounded-md items-center font-medium transition duration-300 ease-out flex"
                 >
                   <LogIn size={20} className="mr-2" />
                   LogIn
