@@ -5,12 +5,11 @@ import { ArrowRight, Loader, UserPlus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useUserStore } from "../stores/useUserStore.js";
 const LoginPage = () => {
-  const loading = false;
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const{login} = useUserStore()
+  const{login,loading} = useUserStore()
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);

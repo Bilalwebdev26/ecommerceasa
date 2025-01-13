@@ -1,4 +1,4 @@
-import { icons, Lock, Mail, User } from "lucide-react";
+import { BarChart, icons, Lock, Mail, PlusCircle, ShoppingBasket, User } from "lucide-react";
 
 export const signupItems = [
   {
@@ -56,4 +56,14 @@ export const categories = [
   {href:"jackets",name:"Jackets",imageURL:"src/assets/jackets.jpg"},
   {href:"/suits",name:"Suits",imageURL:"src/assets/suits.jpg"},
   {href:"bags",name:"Bags",imageURL:"src/assets/bags.jpg"}
+]
+
+export const adminTabs=[
+  {id:"create",label:"Create Products",icon:PlusCircle},
+  {id:"products",label:"Products",icon:ShoppingBasket},
+  {id:"analytics",label:"Analytics",icon:BarChart}
+]
+
+export const categoriesOnly=[
+  "jeans","t-shirts","shoes","glasses","jackets","suits","bags"
 ]
