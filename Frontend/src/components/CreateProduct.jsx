@@ -5,14 +5,14 @@ import { Loader, PlusCircle, Upload } from "lucide-react";
 import { useProductStore } from "../stores/useProductStore.js";
 
 const CreateProduct = () => {
-  const { createProduct, Loading } = useProductStore();
+  const { createProduct, loading } = useProductStore();
   const [newPoduct, setNewProduct] = useState({
     name: "",
     description: "",
     price: "",
-    category: "",
     // countInStock:""
     image: "",
+    category: "",
   });
   const formHandler = async (e) => {
     e.preventDefault();
@@ -23,8 +23,8 @@ const CreateProduct = () => {
         name: "",
         description: "",
         price: "",
-        category: "",
         image: "",
+        category: "",
       });
   } catch (error) {
     console.log("Error occur while creating Product")
@@ -110,7 +110,7 @@ const CreateProduct = () => {
             required
           />
         </div>
-        <div>
+        {/* <div>
           <label
             htmlFor="category"
             className="block text-sm font-medium text-gray-300"
@@ -133,7 +133,37 @@ const CreateProduct = () => {
               </option>
             ))}
           </select>
+        </div> */}
+
+         {/* Category */}
+         <div>
+          <label
+            htmlFor="category"
+            className="block text-sm font-medium text-gray-300"
+          >
+            Product Category
+          </label>
+          <select
+            id="category"
+            value={newPoduct.category}
+            onChange={(e) => {
+              console.log("Selected Category:", e.target.value); // Debugging log
+              setNewProduct({ ...newPoduct, category: e.target.value });
+            }}
+            className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+            required
+          >
+            <option value="" disabled>
+              Select a category
+            </option>
+            {categoriesOnly.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
         </div>
+
         <div className="mt-2 flex items-center">
           <input
             type="file"
@@ -158,13 +188,13 @@ const CreateProduct = () => {
           type="submit"
           className="w-full bg-emerald-600 text-white flex items-center justify-center mt-2 font-semibold text-sm rounded-md px-3 py-2 hover:bg-emerald-500 transition-all"
         >
-          {Loading ? (
+          {loading ? (
             <>
               <Loader
                 className="h-5 w-5 mr-2 animate-spin"
                 aria-hidden="true"
               />
-              Loading...
+              loading...
             </>
           ) : (
             <>

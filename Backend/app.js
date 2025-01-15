@@ -17,7 +17,7 @@ app.use(
   })
 );
 
-app.use(express.json({ limit: "5mb" })); //allow you to parse the body of the request
+app.use(express.json({ limit: "50mb" })); //allow you to parse the body of the request
 app.use(cookieParser()); //allow
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/v1/auth", authRoutes);
