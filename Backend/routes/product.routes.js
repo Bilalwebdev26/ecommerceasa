@@ -12,10 +12,10 @@ import { adminRoute, protectedRoute } from "../middleware/auth.middleware.js";
 const router = express.Router();
 
 router.post("/create-product", protectedRoute, adminRoute, createProduct);
-router.get("/products", protectedRoute, adminRoute, getAllProducts);
+router.get("/allProducts", protectedRoute, adminRoute, getAllProducts);
 router.get("/feature-products", getAllFeatureProducts);
-router.get("/recomended-product", protectedRoute, getRecommendedProduct);
-router.get("/category/:category", protectedRoute, getCategoryProduct);
+router.get("/recomended-product", getRecommendedProduct);
+router.get("/category/:category", getCategoryProduct);
 router.delete("/delete-product/:id", protectedRoute, adminRoute, deleteProduct);
 router.put("/toggle-featuredProdct/:id",protectedRoute,adminRoute,toggleFeatureProducts)
 

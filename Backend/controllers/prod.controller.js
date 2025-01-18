@@ -96,7 +96,7 @@ export const getCategoryProduct = async(req,res)=>{
     const{category}=req.params
    try {
     const products = await Product.find({category})
-    res.json(products)
+    res.json({products})
    } catch (error) {
     res.stats(500).json({message:"Server Error",error:error.message})
    }
@@ -106,7 +106,7 @@ export const toggleFeatureProducts = async(req,res)=>{
       const product = await Product.findById(req.params.id)
       if(product){
           product.isFeatured = !product.isFeatured
-          const updateProduct = await Product.save()
+          const updateProduct = await product.save()
           await updloadFeatureProdcutCache()
           res.json(updateProduct)
       }
@@ -114,7 +114,7 @@ export const toggleFeatureProducts = async(req,res)=>{
         res.stats(404).json({message:"No Product found"})
       }
   } catch (error) {
-    res.stats(500).json({message:"Server Error",error:error.message})
+    res.status(500).json({message:"Server Error",error:error.message})
   }
 }
 

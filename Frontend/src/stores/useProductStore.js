@@ -46,5 +46,52 @@ export const useProductStore = create((set, get) => ({
       set({ loading: false });
     }
   },
-  
+  fetchProduct:async()=>{
+   set({loading:true})
+   try {
+    const res = await axios.get("/v1/products/allProducts")
+    set({products:res.data.products,loading:false})
+   } catch (error) {
+    set({error:"Failed to fetch Products",loading:false})
+    toast.error(error.response?.data?.error || "Failed to fetch All Products") 
+   }
+  },
+  deleteProduct:async(productId)=>{
+    set({loading:true})
+    try {
+      const res = await axios.delete(`/v1/products/delete-product/${productId}`)
+      set((prevState)=>({
+        products:prevState.products.filter((product)=> product._id !== productId),
+        loading:false
+      }))
+    } catch (error) {
+      set({loading:false})
+      toast.error(error.response.data.error || "Failed to delete Product")
+    }
+  },
+  toggleFeatureProduct:async(productId)=>{
+    set({loading:true})
+    try {
+    const res = await axios.put(`/v1/products/toggle-featuredProdct/${productId}`)
+    set((prevState)=>({
+      products:prevState.products.map((product)=>
+      product._id === productId ? {...product,isFeatured : res.data.isFeatured}:product
+      ),
+      loading:false
+    }))
+    } catch (error) {
+      set({loading:false});
+      toast.error(error.response.data.error || "Failed to update product")
+    }
+  },
+  getProductByCategory:async(category)=>{
+    set({loading:true})
+    try {
+      const res = await axios.get(`/v1/products/category/${category}`)
+      set({products:res.data.products,loading:false})
+    } catch (error) {
+      set({loading:false,error:"Failed to Fetch Product"})
+        toast.error(error.response.data.error|| "Failed to Fetch Product")
+    } 
+  }
 }));

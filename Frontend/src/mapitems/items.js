@@ -50,12 +50,12 @@ export const loginItems = [
 
 export const categories = [
   {href:"/jeans",name:"Jeans",imageURL:"src/assets/jeans.jpg"},
-  {href:"/tshirts",name:"T-shirts",imageURL:"src/assets/tshirts.jpg"},
+  {href:"/t-shirts",name:"T-shirts",imageURL:"src/assets/tshirts.jpg"},
   {href:"/shoes",name:"Shoes",imageURL:"src/assets/shoes.jpg"},
   {href:"/glasses",name:"Glasses",imageURL:"src/assets/glasses.png"},
-  {href:"jackets",name:"Jackets",imageURL:"src/assets/jackets.jpg"},
+  {href:"/jackets",name:"Jackets",imageURL:"src/assets/jackets.jpg"},
   {href:"/suits",name:"Suits",imageURL:"src/assets/suits.jpg"},
-  {href:"bags",name:"Bags",imageURL:"src/assets/bags.jpg"}
+  {href:"/bags",name:"Bags",imageURL:"src/assets/bags.jpg"}
 ]
 
 export const adminTabs=[
