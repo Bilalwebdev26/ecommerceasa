@@ -9,12 +9,18 @@ import { useUserStore } from "./stores/useUserStore.js";
 import Loading from "./components/Loading.jsx";
 import AdminPage from "./pages/AdminPage.jsx";
 import CategoryPage from "./pages/CategoryPage.jsx";
+import CartPage from "./pages/CartPage.jsx";
+import { useCartStore } from "./stores/useCartStore.js";
 
 const App = () => {
   const { user,checkauth ,checkingAuth } = useUserStore();
+  const{cart,getCartItem} = useCartStore()
   useEffect(()=>{
     checkauth()
   },[checkauth])
+  useEffect(()=>{
+    getCartItem()
+  },[getCartItem])
   
   if(checkingAuth){
     return <Loading/>
@@ -35,6 +41,7 @@ const App = () => {
           <Route path="/login" element={!user ? <LoginPage/> : <Navigate to={"/"}/>} />
           <Route path="/secret-dashboard" element={user?.role === "admin" ? <AdminPage/> : <Navigate to={"/login"}/>} />
           <Route path="/category/:category" element={<CategoryPage/>}/>
+          <Route path="/cart" element={user ? <CartPage/> : <Navigate to={"/login"}/>}/>
         </Routes>
       </div>
       <Toaster />
