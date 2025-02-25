@@ -67,3 +67,5 @@ export const adminTabs=[
 export const categoriesOnly=[
   "jeans","t-shirts","shoes","glasses","jackets","suits","bags"
 ]
+
+export const recommendations =[] 

@@ -3,6 +3,10 @@ import { motion } from "framer-motion";
 import { useCartStore } from "../stores/useCartStore.js";
 import {MoveRight} from "lucide-react"
 import{Link} from "react-router-dom"
+import{loadStripe} from "@stripe/stripe-js"
+
+// const stripePromise
+
 const OrderSummary = () => {
   const { total, subTotal ,coupon,isCouponApplied} = useCartStore();
   const savings = subTotal - total;
@@ -10,7 +14,7 @@ const OrderSummary = () => {
   const formattedTotal = total.toFixed(2);
   const formattedSavings = savings.toFixed(2);
   const handleClick = ()=>{
-    alert("Click")
+    console.log("Bilal")
   }
   return (
     <motion.div

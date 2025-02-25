@@ -19,8 +19,8 @@ const App = () => {
     checkauth()
   },[checkauth])
   useEffect(()=>{
-    getCartItem()
-  },[getCartItem])
+   if(user) getCartItem()
+  },[getCartItem,user])
   
   if(checkingAuth){
     return <Loading/>

@@ -93,7 +93,7 @@ export const useCartStore = create((set, get) => ({
       set({ total, subTotal });
     } catch (error) {
       toast.error(
-        error.response.data.message || "An error occurred in Total Calculate"
+        error.response.data.message || "An error occurred innam Total Calculate"
       );
     }
   },
