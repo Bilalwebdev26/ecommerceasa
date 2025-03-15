@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { categories } from '../mapitems/items.js'
 import CategoryItem from '../components/CategoryItem.jsx'
+import { useProductStore } from '../stores/useProductStore.js'
+import FeatureProductSlider from "../components/FeatureProductSlider.jsx"
 const HomePage = () => {
+  const{fetchFeatureProduct,products,loading}=useProductStore()
+  useEffect(()=>{
+    fetchFeatureProduct()
+  },[fetchFeatureProduct])
   return (
     <div className='relative min-h-screen text-white overflow-hidden'>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -19,6 +25,7 @@ const HomePage = () => {
               ))
              }
           </div>
+          {!loading && products.length>0 && <FeatureProductSlider fetaurProducts={products}/>}
       </div>
     </div>
   )

@@ -93,5 +93,15 @@ export const useProductStore = create((set, get) => ({
       set({loading:false,error:"Failed to Fetch Product"})
         toast.error(error.response.data.error|| "Failed to Fetch Product")
     } 
+  },
+  fetchFeatureProduct:async()=>{
+    set({loading:true})
+    try {
+      const response = await axios.get("/v1/products/feature-products")
+      console.log("Feature Prod data : ",response.data)
+      set({products:response.data,loading:false})
+    } catch (error) {
+      set({error:"Failed to fetch Feature product",loading:false})
+    }
   }
 }));

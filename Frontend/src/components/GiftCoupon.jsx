@@ -1,11 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useCartStore } from "../stores/useCartStore.js";
 const GiftCoupon = () => {
   const[userInputCode,setInputCode]=useState('')
-  const{coupon,isCouponApplied} = useCartStore()
+  const{coupon,isCouponApplied,applyCoupon,getMyCoupon,removeCoupon} = useCartStore()
+
+  useEffect(()=>{
+    getMyCoupon()
+  },[getMyCoupon])
+
+  useEffect(()=>{
+    if(coupon){
+      console.log("Coupon code :",coupon.code)
+      setInputCode(coupon.code)
+    }
+  },[coupon])
+
   const handleApplyCoupon=()=>{
-  console.log("")
+  console.log(userInputCode)
+  }
+  const handleRemoveCoupon=()=>{
+  console.log(userInputCode)
   }
   return (
     <motion.div 
@@ -37,7 +52,7 @@ const GiftCoupon = () => {
         Apply Code
       </motion.button>
     </div>
-    {coupon && (
+    {isCouponApplied && coupon && (
       <div className="mt-4">
         <h3 className="text-lg font-medium text-gray-300">Applied Coupon</h3>
         <p className="mt-2 text-sm text-gray-400">{coupon.code} - {coupon.discountPercent}%off</p>
@@ -46,7 +61,7 @@ const GiftCoupon = () => {
         type="button"
         whileHover={{scale:1.05}}
         whileTap={{scale:0.95}}
-        onClick={handleApplyCoupon}
+        onClick={handleRemoveCoupon}
         >
           Remove Coupon
         </motion.button>
